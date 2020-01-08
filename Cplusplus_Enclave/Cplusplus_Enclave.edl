@@ -1,0 +1,26 @@
+enclave {
+	//to use other cpp, you need to use edl.
+    from "sgx_tstdc.edl" import *;
+	from "TrustedLibrary/svm.edl" import *;
+	include "sgx_tcrypto.h"
+	include "svm.h"
+	
+	
+	
+	
+    trusted {
+        /* define ECALLs here. */
+		public void SGXBayesTrain([in,size=1024]void *m,int start,int end);
+		public void SGXGetData([in]double data[3200][15]);
+		public void SGXSVMTrain([user_check]void *m,[user_check]void *p,[user_check]void *problem, int start, int end);
+		public void SGXEncrypt([user_check]sgx_aes_ctr_128bit_key_t *key,[user_check]uint8_t *text,uint32_t length,[user_check]uint8_t *counter,uint32_t bit,[user_check]uint8_t *result);
+		public void SGXDecrypt([user_check]sgx_aes_ctr_128bit_key_t *key,[user_check]uint8_t *text,uint32_t length,[user_check]uint8_t *counter,uint32_t bit,[user_check]uint8_t *result);
+		
+		};
+
+    untrusted {
+        /* define OCALLs here. */
+		long long time([user_check]long long*  _time);
+		void srand(unsigned int seed);
+    };
+};
