@@ -1,6 +1,7 @@
 # CplusplusNN11
 
 you cannot just download it and run it, as it is a sgx project.
+
 1.first things first, you need to check if your computer downloaded sgx and visual studio. this project is a simulation project, 
   and doesn't require hardware but does require sgx SDK downloaded.
 
